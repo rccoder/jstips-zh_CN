@@ -584,11 +584,14 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 
 So when you are working with arrays of strings in a language other than English, remember to use this method to avoid unexpected sorting.
 
-## #03 - Improve Nested Conditionals
+## #03 - 改善嵌套条件(Improve Nested Conditionals)
 
 > 2016-01-03 by [AlbertoFuente](https://github.com/AlbertoFuente)
 
-How can we improve and make more efficient nested `if` statement in javascript.
+
+> How can we improve and make more efficient nested `if` statement in javascript.
+
+我们如何在 `JavaScript` 中去改善，或者是使我们的`if`嵌套更加有效。
 
 ``` javascript
 if (color) {
@@ -606,7 +609,9 @@ if (color) {
 }
 ```
 
-One way to improve the nested `if` statement would be using the `switch` statement. Although it is less verbose and is more ordered, It's not recommended to use it because it's so difficult to debug errors, here's [why](https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/).
+> One way to improve the nested `if` statement would be using the `switch` statement. Although it is less verbose and is more ordered, It's not recommended to use it because it's so difficult to debug errors, here's [why](https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/).
+
+一种去改善`if`嵌套的方法可能是使用`switch`语句。虽然这样做的确看起来更加的有序和简洁，但是并不建议去使用它，因为使用它是如此的难以调试错误，原因在这儿[why](https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/)。
 
 ``` javascript
 switch(color) {
@@ -627,9 +632,11 @@ switch(color) {
 }
 ```
 
-But what if we have a conditional with several checks in each statement? In this case, if we like to do less verbose and more ordered, we can use the conditional `switch`.
+> But what if we have a conditional with several checks in each statement? In this case, if we like to do less verbose and more ordered, we can use the conditional `switch`. If we pass `true` as parameter to the `switch` statement, It allows us to put a conditional in each case.
 
-If we pass `true` as parameter to the `switch` statement, It allows us to put a conditional in each case.
+但是如果我们有有一个条件，然后在每个语句进行多项的检查。在这种情况下，如果我们喜欢让嵌套变得更加有序和简洁，我们可以使用这种条件`switch`。如果我们传递 `true` 参数给`switch` 语句，他将允许我们在每一种情况下都有条件。
+
+
 
 ``` javascript
 switch(true) {
@@ -651,7 +658,9 @@ switch(true) {
 }
 ```
 
-But we must always avoid having several checks in every condition, avoiding use of `switch` as far as possible and take into account that the most efficient way to do this is through an `object`.
+> But we must always avoid having several checks in every condition, avoiding use of `switch` as far as possible and take into account that the most efficient way to do this is through an `object`.
+
+但是我们必须避免在每个条件下都有多次的检查，尽可能的去避免使用`switch`，解决这个问题最有效的一个方法是通过对象。
 
 ``` javascript
 var colorObj = {
@@ -667,7 +676,9 @@ if (color && colorObj.hasOwnProperty(color)) {
 }
 ```
 
-Here you can find more information about [this](http://www.nicoespeon.com/en/2015/01/oop-revisited-switch-in-js/).
+> Here you can find more information about [this](http://www.nicoespeon.com/en/2015/01/oop-revisited-switch-in-js/).
+
+在[这儿](http://www.nicoespeon.com/en/2015/01/oop-revisited-switch-in-js/)你将找到更多与这个相关的资料。
 
 ## #02 - ReactJs - Keys in children components are important
 

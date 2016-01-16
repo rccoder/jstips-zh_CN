@@ -710,30 +710,40 @@ render() {
 - When the amount of child are big or involve expensive components, use keys has performance improvements.
 - [You must provide the key attribute for all children of ReactCSSTransitionGroup.](http://docs.reactjs-china.com/react/docs/animation.html)
 
-## #1 - AngularJs: `$digest` vs `$apply`
+## #1 - Angular之$digest与$apply对决(AngularJs: `$digest` vs `$apply`)
 
 > 2016-01-01  by [@loverajoel](https://twitter.com/loverajoel)
 
-One of the most appreciated features of AngularJs is the two way data binding. In order to make this work AngularJs evaluates the changes between the model and the view through cycles(`$digest`). You need to understand this concept in order to understand how the framework works under the hood.
 
-Angular evaluates each watcher whenever one event is fired, this is the known `$digest` cycle.
+> One of the most appreciated features of AngularJs is the two way data binding. In order to make this work AngularJs evaluates the changes between the model and the view through cycles(`$digest`). You need to understand this concept in order to understand how the framework works under the hood.
 
-Sometimes you have to force to run a new cycle manually and you must choose the correct option because this phase is one of the most influential in terms of performance.
+AngularJs 中最让人欣赏的莫过于数据的双向绑定。AngularJs 在模型和视图之间通过循环视图使得这一机制实现。如果你想去理解框架是如何去工作的话你需要了解这一概念。
+
+> Angular evaluates each watcher whenever one event is fired, this is the known `$digest` cycle.Sometimes you have to force to run a new cycle manually and you must choose the correct option because this phase is one of the most influential in terms of performance.
+
+Angular 中每当一个事件被触发，就形成一个已知的`$digest`  cycle。有时候你不得不去强制手动创建一个新的周期，这个时候你必须有正确的选择，因为这个阶段对性能的影响是非常之大的。
 
 ### `$apply`
 
-This core method lets you to start the digestion cycle explicitly, that means that all watchers are checked, the entire application starts the `$digest loop`. Internally after execute an optional function parameter, call internally to `$rootScope.$digest();`.
+> This core method lets you to start the digestion cycle explicitly, that means that all watchers are checked, the entire application starts the `$digest loop`. Internally after execute an optional function parameter, call internally to `$rootScope.$digest();`.
+
+这个核心的方法让你去明确的开始`$digest`  cycle，这就意味着所有的watchers都会重新进行检查，整个应用启动`$digest loop`。 经过内部执行可选的函数参数，调用内部的`$rootScope.$digest();`。
 
 ### `$digest`
 
-In this case the `$digest` method starts the `$digest` cycle for the current scope and its children. You should notice that the parents scopes will not be checked
+> In this case the `$digest` method starts the `$digest` cycle for the current scope and its children. You should notice that the parents scopes will not be checked and not be affected.
 
- and not be affected.
+在这样的情况下，`$digest`方法从当前的作用域以及子作用域中启动 `$digest`  cycle。你应该能注意到父作用域将不会进行检查，当然也就没有影响。
 
-### Recommendations
+### 建议(Recommendations)
 
-- Use `$apply` or `$digest` only when browser DOM events have triggered outside of AngularJS.
-- Pass a function expression to `$apply`, this have a error handling mechanism and allow integrate changes in the digest cycle
+- > Use `$apply` or `$digest` only when browser DOM events have triggered outside of AngularJS.
+  
+  仅仅当浏览器的 DOM 事件在 AngularJs 作用的外面时使用 `$apply` 或者 `$digest`。
+  
+- > Pass a function expression to `$apply`, this have a error handling mechanism and allow integrate changes in the digest cycle
+  
+  给 `$apply` 传递一个函数表达式的时候，有一个错误处理机制，这个机制允许集成 digest cycle 的变化。
 
 ``` 
 ​```javascript
@@ -743,9 +753,17 @@ $scope.$apply(() => {
 ​```
 ```
 
-- If only needs update the current scope or its children use `$digest`, and prevent a new digest cycle for the whole application. The performance benefit it's self evident
-- `$apply()` is hard process for the machine and can lead to performance issues when having a lot of binding.
-- If you are using >AngularJS 1.2.X, use `$evalAsync` is a core method that will evaluate the expression during the current cycle or the next. This can improve your application's performance.
+- > If only needs update the current scope or its children use `$digest`, and prevent a new digest cycle for the whole application. The performance benefit it's self evident
+  
+  仅仅去更新现在的作用域或者子作用域的时候使用 `$digest` ，阻止整个应用产生新的 digest cycle 。这在性能上的好处是不言而喻的。
+  
+- > `$apply()` is hard process for the machine and can lead to performance issues when having a lot of binding.
+  
+  `$apply()` 是一个很难用的方法，当许多的绑定放在一起的时候可能会在性能上产生问题。
+  
+- > If you are using >AngularJS 1.2.X, use `$evalAsync` is a core method that will evaluate the expression during the current cycle or the next. This can improve your application's performance.
+  
+  如果你使用的 AngularJS 版本是大于 1.2.X的，使用核心方法`$evalAsync`在当前的周期或者下一个的时候。这将提升你的应用性能。
 
 ## #0 - 在数组中插入一个元素(Insert item inside an Array)
 

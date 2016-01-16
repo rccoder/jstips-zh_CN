@@ -526,20 +526,27 @@ printUpperCase(["cactus", "bear", "potato"]);
   null === undefined // false
   ```
 
-## #04 - Sorting strings with accented characters
+## #04 - 带重音的字符串排序(Sorting strings with accented characters)
 
 > 2016-01-04 by [@loverajoel](https://twitter.com/loverajoel)
 
-Javascript has a native method **[sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)** that allows sorting arrays. Doing a simple `array.sort()` will treat each array entry as a string and sort it alphabetically. Also you can provide your [own custom sorting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters) function.
+
+> Javascript has a native method **[sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)** that allows sorting arrays. Doing a simple `array.sort()` will treat each array entry as a string and sort it alphabetically. Also you can provide your [own custom sorting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters) function.
+
+JavaScript 拥有一个原生的 `sort` 排序方法开排序数组。使用简单的 `array.sort()` 会把数组中的每项当做一个字符串，然后按照字母的顺序进行排序。当然，你也可以使用你自己定义的排序函数。
 
 ``` javascript
 ['Shanghai', 'New York', 'Mumbai', 'Buenos Aires'].sort();
 // ["Buenos Aires", "Mumbai", "New York", "Shanghai"]
 ```
 
-But when you try order an array of non ASCII characters like this `['é', 'a', 'ú', 'c']`, you will obtain a strange result `['c', 'e', 'á', 'ú']`. That happens because sort works only with english language.
+> But when you try order an array of non ASCII characters like this `['é', 'a', 'ú', 'c']`, you will obtain a strange result `['c', 'e', 'á', 'ú']`. That happens because sort works only with english language.
 
-See the next example:
+但是当你排序不是ASCII字符的数组时，比如这样的 `['é', 'a', 'ú', 'c']` ， 你将会得到这样一个奇怪的结果 `['c', 'e', 'á', 'ú']`。这是因为排序仅仅适用于英语。
+
+> See the next example:
+
+看下面的例子：
 
 ``` javascript
 // Spanish
@@ -551,11 +558,16 @@ See the next example:
 // ["Wann", "Woche", "wäre", "wöchentlich"] // bad order
 ```
 
-Fortunately, there are two ways to overcome this behavior [localeCompare](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare) and [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator) provided by ECMAScript Internationalization API.
+> Fortunately, there are two ways to overcome this behavior [localeCompare](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare) and [Intl.Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator) provided by ECMAScript Internationalization API.
+
+ 幸运的是，这儿有两种由 ECMAScript 国际化 API 提供的方式可以克服这种行为——`localeCompare` 和 `Intl.Collator`。
 
 > Both methods have their own custom parameters in order to configure it to work adequately.
 
-### Using `localeCompare()`
+
+> 这两种方法都有可以自定义的参数去配置他来使得他充分工作。
+
+### 使用 `localeCompare()`(Using `localeCompare())`
 
 ``` javascript
 ['único','árbol', 'cosas', 'fútbol'].sort(function (a, b) {
@@ -569,7 +581,7 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 // ["Wann", "wäre", "Woche", "wöchentlich"]
 ```
 
-### Using `Intl.Collator()`
+### 使用`Intl.Collator()`(Using `Intl.Collator()`)
 
 ``` javascript
 ['único','árbol', 'cosas', 'fútbol'].sort(Intl.Collator().compare);
@@ -579,10 +591,17 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 // ["Wann", "wäre", "Woche", "wöchentlich"]
 ```
 
-- For each method you can customize the location.
-- According to [Firefox](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#Performance) Intl.Collator is faster when comparing large numbers of strings.
+- > For each method you can customize the location
+  
+  每种方法你都可以自定义位置
+  
+- > According to [Firefox](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#Performance) Intl.Collator is faster when comparing large numbers of strings.
+  
+  当比较两个比较大的字符串的时候`Intl.Collator`是更快的。
 
-So when you are working with arrays of strings in a language other than English, remember to use this method to avoid unexpected sorting.
+> So when you are working with arrays of strings in a language other than English, remember to use this method to avoid unexpected sorting.
+
+所以当你处理的数组中的字符串不是英文的时候，记得去使用这种方法来避免产生不期待的排序。
 
 ## #03 - 改善嵌套条件(Improve Nested Conditionals)
 

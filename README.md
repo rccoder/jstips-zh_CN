@@ -1,22 +1,20 @@
 ![header](https://raw.githubusercontent.com/loverajoel/jstips/master/resources/jstips-header-blog.gif)
 
-# Introducing JavaScript Tips
-> New year, new project. **A JS tip per day!**
+# JavaScript 技巧介绍
 
-With great excitement, I introduce these short and useful daily JavaScript tips that will allow you to improve your code writing. With less than 2 minutes each day, you will be able to read about performance, conventions, hacks, interview questions and all the items that the future of this awesome language holds for us.
+新的一年，新的项目. **每天一个JS小技巧**
 
-At midday, no matter if it is a weekend or a holiday, a tip will be posted and tweeted.
+**《Introducing JavaScript Tips》** 中文翻译版，原地址：[https://github.com/loverajoel/jstips](https://github.com/loverajoel/jstips)
 
-### Can you help us enrich it?
-Please feel free to send us a PR with your own JavaScript tip to be published here.
-Any improvements or suggestions are more than welcome!
-[Click to see the instructions](https://github.com/loverajoel/jstips/blob/master/CONTRIBUTING.md)
+> With great excitement, I introduce these short and useful daily JavaScript tips that will allow you to improve your code writing. With less than 2 minutes each day, you will be able to read about performance, conventions, hacks, interview questions and all the items that the future of this awesome language holds for us.
 
-### Let’s keep in touch
-To get updates, watch the repo and follow the [Twitter account](https://twitter.com/tips_js), only one tweet will be sent per day. It is a deal!
-> Don't forget to Star the repo, as this will help to promote the project!
+怀着兴奋的心情，我将介绍一些简短有用的JavaScript日常小技巧，这可能会帮助你提高你的代码编写水平。伴随着每天不到两分钟的阅读，你将会了解JavaScript的性能、约定、Hacks、面试问题。
 
-# Tips list
+> At midday, no matter if it is a weekend or a holiday, a tip will be posted and tweeted.
+
+在每个午休时刻，无论是周末还是假期，这样的一条条JavaScript小技巧将会发布。
+
+# 技巧列表 
 
 ## #15 - Even simpler way of using indexOf as a contains clause
 
@@ -24,7 +22,7 @@ To get updates, watch the repo and follow the [Twitter account](https://twitter.
 
 JavaScript by default does not have a contains method. And for checking existence of a substring in string or item in array you may do this:
 
-```javascript
+``` javascript
 var someText = 'javascript rules';
 if (someText.indexOf('javascript') !== -1) {
 }
@@ -37,14 +35,16 @@ if (someText.indexOf('javascript') >= 0) {
 But let's look at these [Expressjs](https://github.com/strongloop/express) code snippets.
 
 [examples/mvc/lib/boot.js](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/examples/mvc/lib/boot.js#L26)
-```javascript
+
+``` javascript
 for (var key in obj) {
   // "reserved" exports
   if (~['name', 'prefix', 'engine', 'before'].indexOf(key)) continue;
 ```
 
 [lib/utils.js](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/lib/utils.js#L93)
-```javascript
+
+``` javascript
 exports.normalizeType = function(type){
   return ~type.indexOf('/')
     ? acceptParams(type)
@@ -53,7 +53,8 @@ exports.normalizeType = function(type){
 ```
 
 [examples/web-service/index.js](https://github.com/strongloop/express/blob/2f8ac6726fa20ab5b4a05c112c886752868ac8ce/examples/web-service/index.js#L35)
-```javascript
+
+``` javascript
 // key is invalid
 if (!~apiKeys.indexOf(key)) return next(error(401, 'invalid api key'));
 ```
@@ -62,7 +63,7 @@ The gotcha is the [bitwise operator](https://developer.mozilla.org/en-US/docs/We
 
 It transforms -1 into 0, and 0 is false in javascript, so:
 
-```javascript
+``` javascript
 var someText = 'text';
 !!~someText.indexOf('tex'); //sometext contains text - true
 !~someText.indexOf('tex'); //sometext not contains text - false
@@ -74,33 +75,37 @@ var someText = 'text';
 
 In ES6 was introduced the [includes() method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes) and you can use to determine whether or not a string includes another string:
 
-```javascript
+``` javascript
 'something'.includes('thing'); // true
 ```
 
 With ECMAScript 2016 (ES7) is even possible uses with Arrays, like indexOf:
 
-```javascript
+``` javascript
 !!~[1, 2, 3].indexOf(1); // true
 [1, 2, 3].includes(1); // true
 ```
 
 **Unfortunately, It's got support only in Chrome, Firefox, Safari 9 or above and Edge. Not IE11 or less.**
+
 **It's better to using in controlled environments.**
 
 ## #14 - Fat Arrow Functions #ES6
+
 > 2016-01-13 by [@pklinger](https://github.com/pklinger/)
 
 Introduced as a new feature in ES6, fat arrow functions may come as a handy tool to write more code in less lines. The name comes from its syntax as `=>` is a 'fat arrow' compared to a thin arrow `->`. Some programmers might already know this type of functions from different languages such as Haskell as 'lambda expressions' respectively 'anonymous functions'. It is called anonymous, as these arrow functions do not have a descriptive function name.
 
 ### What are the benefits?
+
 * Syntax: less LOC; no more typing `function` keyword over and over again
 * Semantics: capturing the keyword `this` from the surrounding context
 
 ### Simple syntax example
+
 Have a look at these two code snippets, which exactly do the same job. You will quickly understand what fat arrow functions do.
 
-```javascript
+``` javascript
 // general syntax for fat arrow functions
 param => expression
 
@@ -128,7 +133,7 @@ As you may see, the fat arrow function in this case may save you time typing out
 
 There is another good reason to use fat arrow functions. There is the issue with the context of `this`. With arrow functions, you will not worry about `.bind(this)` or setting `that = this` anymore, as fat arrow functions pick the context of `this` from the lexical surrounding. Have a look at the next [example] (https://jsfiddle.net/pklinger/rw94oc11/):
 
-```javascript
+``` javascript
 
 // globally defined this.i
 this.i = 100;
@@ -182,14 +187,16 @@ function CounterD() {
 Further information about fat arrow functions may be found at [MDN] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions). To see different syntax options visit [this site] (http://jsrocks.org/2014/10/arrow-functions-and-their-scope/).
 
 
+
 ## #13 - Tip to measure performance of a javascript block
 
 2016-01-13 by [@manmadareddy](https://twitter.com/manmadareddy)
 
 For quickly measuring performance of a javascript block, we can use the console functions like
+
 [```console.time(label)```](https://developer.chrome.com/devtools/docs/console-api#consoletimelabel) and [```console.timeEnd(label)```](https://developer.chrome.com/devtools/docs/console-api#consoletimeendlabel)
 
-```javascript
+``` javascript
 console.time("Array initialize");
 var arr = new Array(100),
     len = arr.length,
@@ -202,7 +209,9 @@ console.timeEnd("Array initialize"); // Outputs: Array initialize: 0.711ms
 ```
 
 More info:
+
 [Console object](https://github.com/DeveloperToolsWG/console-object),
+
 [Javascript benchmarking](https://mathiasbynens.be/notes/javascript-benchmarking)
 
 Demo: [jsfiddle](https://jsfiddle.net/meottb62/) - [codepen](http://codepen.io/anon/pen/JGJPoa) (outputs in browser console)
@@ -212,9 +221,10 @@ Demo: [jsfiddle](https://jsfiddle.net/meottb62/) - [codepen](http://codepen.io/a
 > 2016-01-12 by [Avraam Mavridis](https://github.com/AvraamMavridis)
 
 
+
 In many programming languages the parameters of a function is by default mandatory and the developer has to explicitly define that a parameter is optional. In Javascript every parameter is optional, but we can enforce this behavior without messing the actual body of a function taking advantage of the [**es6's default values for parameters**] (http://exploringjs.com/es6/ch_parameter-handling.html#sec_parameter-default-values) feature.
 
-```javascript
+``` javascript
 const _err = function( message ){
   throw new Error( message );
 }
@@ -232,7 +242,7 @@ getSum( undefined, 10 ) // throws Error, a is not defined
 
 Understanding [hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) will help you organize your function scope. Just remember, variable declaration and function definition are hoisted to the top. Variable definition is not, even if you declare and define a variable on the same line. Also, variable **declaration** is letting the system know that the variable exists while **definition** is assigning it a value.
 
-```javascript
+​```javascript
 function doTheThing() {
   // ReferenceError: notDeclared is not defined
   console.log(notDeclared);
@@ -275,7 +285,7 @@ To make things easier to read, declare all of your variables at the top of your 
 
 When you have to check if a property is present of an [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects), you probably are doing something like this:
 
-```javascript
+``` javascript
 var myObject = {
   name: '@tips_js'
 };
@@ -288,7 +298,7 @@ Thats ok, but you have to know that there are two native ways for this kind of t
 
 ### See the big Difference
 
-```javascript
+``` javascript
 var myObject = {
   name: '@tips_js'
 };
@@ -305,7 +315,7 @@ Both differs in the depth how check the properties, in other words `hasOwnProper
 
 Here another example
 
-```javascript
+``` javascript
 var myFunc = function() {
   this.name = '@tips_js';
 };
@@ -328,15 +338,19 @@ Also recommends read [this discussion](https://github.com/loverajoel/jstips/issu
 As of ES6, JS now has template strings as an alternative to the classic end quotes strings.
 
 Ex:
+
 Normal string
-```javascript
+
+``` javascript
 var firstName = 'Jake';
 var lastName = 'Rawr';
 console.log('My name is ' + firstName + ' ' + lastName);
 // My name is Jake Rawr
 ```
+
 Template String
-```javascript
+
+``` javascript
 var firstName = 'Jake';
 var lastName = 'Rawr';
 console.log(`My name is ${firstName} ${lastName}`);
@@ -346,6 +360,7 @@ console.log(`My name is ${firstName} ${lastName}`);
 You can do Multi-line strings without `\n` and simple logic (ie 2+3) inside `${}` in Template String.
 
 You are also able to to modify the output of template strings using a function; they are called [Tagged template strings]
+
 (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings#Tagged_template_strings) for example usages of tagged template strings.
 
 You may also want to [read](https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2) to understand template strings more
@@ -356,7 +371,7 @@ You may also want to [read](https://hacks.mozilla.org/2015/05/es6-in-depth-templ
 
 The `querySelectorAll` method returns an array-like object called a node list. These data structures are referred to as "Array-like", because they appear as an array, but can not be used with array methods like `map` and `foreach`. Here's a quick, safe, and reusable way to convert a node list into an Array of DOM elements:
 
-```javascript
+``` javascript
 const nodelist = document.querySelectorAll('div');
 const nodelistToArray = Array.apply(null, nodelist);
 
@@ -373,7 +388,7 @@ The `apply` method is used to pass an array of arguments to a function with a gi
 
 Or if you are using ES2015 you can use the [spread operator `...`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
-```js
+``` js
 const nodelist = [...document.querySelectorAll('div')]; // returns a real Array
 
 //later on ..
@@ -397,7 +412,7 @@ Programmers like to make the computer do the boring stuff for us, and automatica
 
 We add this directive either by adding it at the top of a js file:
 
-```javascript
+``` javascript
 // Whole-script strict mode syntax
 "use strict";
 var v = "Hi!  I'm a strict mode script!";
@@ -405,7 +420,7 @@ var v = "Hi!  I'm a strict mode script!";
 
 or inside a function:
 
-```javascript
+``` javascript
 function f()
 {
   // Function-level strict mode syntax
@@ -417,6 +432,7 @@ function f2() { return "I'm not strict."; }
 ```
 
 By including this directive in a JavaScript file or function, we will direct the JavaScript engine to execute in strict mode which disables a bunch of behaviors that are usually undesirable in larger JavaScript projects.  Among other things, strict mode changes the following behaviors:
+
 * Variables can only be introduced when they are preceded with "var"
 * Attempting to write to readonly properties generates a noisy error
 * You have to call constructors with the "new" keyword
@@ -427,7 +443,9 @@ By including this directive in a JavaScript file or function, we will direct the
 Strict mode is great for new projects, but can be challenging to introduce into older projects that don't already use it in most places.  It also can be problematic if your build chain concatenates all your js files into one big file, as this may cause all files to execute in strict mode.
 
 It is not a statement, but a literal expression, ignored by earlier versions of JavaScript.
+
 Strict mode is supported in:
+
 * Internet Explorer from version 10.
 * Firefox from version 4.
 * Chrome from version 13.
@@ -444,7 +462,7 @@ Rather than writing separate methods to handle an array and a single element par
 
 You just have to concat everything into an array first. `Array.concat` will accept an array or a single element.
 
-```javascript
+``` javascript
 function printUpperCase(words) {
   var elements = [].concat(words);
   for (var i = 0; i < elements.length; i++) {
@@ -455,7 +473,7 @@ function printUpperCase(words) {
 
 `printUpperCase` is now ready to accept a single node or an array of nodes as its parameter.
 
-```javascript
+``` javascript
 printUpperCase("cactus");
 // => CACTUS
 printUpperCase(["cactus", "bear", "potato"]);
@@ -469,32 +487,44 @@ printUpperCase(["cactus", "bear", "potato"]);
 > 2016-01-05 by [@loverajoel](https://twitter.com/loverajoel)
 
 - `undefined` means a variable has not been declared, or has been declared but has not yet been assigned a value
+  
 - `null` is an assignment value that means "no value"
+  
 - Javascript sets unassigned variables with a default value of `undefined`
+  
 - Javascript never sets a value to `null`. It is used by programmers to indicate that a `var` has no value.
+  
 - `undefined` is not valid in JSON while `null` is
+  
 - `undefined` typeof is `undefined`
+  
 - `null` typeof is an `object`
+  
 - Both are primitives
+  
 - Both are [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
+  
   (`Boolean(undefined) // false`, `Boolean(null) // false`)
+  
 - You can know if a variable is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
-
-  ```javascript
+  
+  ``` javascript
   typeof variable === "undefined"
-```
+  ```
+  
 - You can check if a variable is [null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
-
-  ```javascript
+  
+  ``` javascript
   variable === null
-```
+  ```
+  
 - The **equality** operator considers them equal, but the **identity** doesn't
-
-  ```javascript
+  
+  ``` javascript
   null == undefined // true
-
+  
   null === undefined // false
-```
+  ```
 
 ## #04 - Sorting strings with accented characters
 
@@ -502,7 +532,7 @@ printUpperCase(["cactus", "bear", "potato"]);
 
 Javascript has a native method **[sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)** that allows sorting arrays. Doing a simple `array.sort()` will treat each array entry as a string and sort it alphabetically. Also you can provide your [own custom sorting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters) function.
 
-```javascript
+``` javascript
 ['Shanghai', 'New York', 'Mumbai', 'Buenos Aires'].sort();
 // ["Buenos Aires", "Mumbai", "New York", "Shanghai"]
 ```
@@ -511,7 +541,7 @@ But when you try order an array of non ASCII characters like this `['é', 'a', '
 
 See the next example:
 
-```javascript
+``` javascript
 // Spanish
 ['único','árbol', 'cosas', 'fútbol'].sort();
 // ["cosas", "fútbol", "árbol", "único"] // bad order
@@ -527,7 +557,7 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 
 ### Using `localeCompare()`
 
-```javascript
+``` javascript
 ['único','árbol', 'cosas', 'fútbol'].sort(function (a, b) {
   return a.localeCompare(b);
 });
@@ -541,7 +571,7 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 
 ### Using `Intl.Collator()`
 
-```javascript
+``` javascript
 ['único','árbol', 'cosas', 'fútbol'].sort(Intl.Collator().compare);
 // ["árbol", "cosas", "fútbol", "único"]
 
@@ -555,11 +585,12 @@ Fortunately, there are two ways to overcome this behavior [localeCompare](https:
 So when you are working with arrays of strings in a language other than English, remember to use this method to avoid unexpected sorting.
 
 ## #03 - Improve Nested Conditionals
+
 > 2016-01-03 by [AlbertoFuente](https://github.com/AlbertoFuente)
 
 How can we improve and make more efficient nested `if` statement in javascript.
 
-```javascript
+``` javascript
 if (color) {
   if (color === 'black') {
     printBlackBackground();
@@ -577,7 +608,7 @@ if (color) {
 
 One way to improve the nested `if` statement would be using the `switch` statement. Although it is less verbose and is more ordered, It's not recommended to use it because it's so difficult to debug errors, here's [why](https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/).
 
-```javascript
+``` javascript
 switch(color) {
   case 'black':
     printBlackBackground();
@@ -597,9 +628,10 @@ switch(color) {
 ```
 
 But what if we have a conditional with several checks in each statement? In this case, if we like to do less verbose and more ordered, we can use the conditional `switch`.
+
 If we pass `true` as parameter to the `switch` statement, It allows us to put a conditional in each case.
 
-```javascript
+``` javascript
 switch(true) {
   case (typeof color === 'string' && color === 'black'):
     printBlackBackground();
@@ -621,7 +653,7 @@ switch(true) {
 
 But we must always avoid having several checks in every condition, avoiding use of `switch` as far as possible and take into account that the most efficient way to do this is through an `object`.
 
-```javascript
+``` javascript
 var colorObj = {
   'black': printBlackBackground,
   'red': printRedBackground,
@@ -642,6 +674,7 @@ Here you can find more information about [this](http://www.nicoespeon.com/en/201
 > 2016-01-02  by [@loverajoel](https://twitter.com/loverajoel)
 
 
+
 The [key](https://facebook.github.io/react/docs/multiple-components.html#dynamic-children) is an attribute that you must pass to all components created dynamically from an array. It's unique and constant id that React use for identify each component in the DOM and know that it's a different component and not the same one. Using keys will ensure that the child component is preserved and not recreated and prevent that weird things happens.
 
 > Key is not really about performance, it's more about identity (which in turn leads to better performance). randomly assigned and changing values are not identity [Paul O’Shannessy](https://github.com/facebook/react/issues/1342#issuecomment-39230939)
@@ -649,24 +682,29 @@ The [key](https://facebook.github.io/react/docs/multiple-components.html#dynamic
 - Use an existing unique value of the object.
 - Define the keys in the parent components, not in child components
 
-	```javascript
-	//bad
-	...
-	render() {
-		<div key={{item.key}}>{{item.name}}</div>
-	}
-	...
+``` 
+​```javascript
+//bad
+...
+render() {
+	<div key={{item.key}}>{{item.name}}</div>
+}
+...
 
-	//good
-	<MyComponent key={{item.key}}/>
-	```
+//good
+<MyComponent key={{item.key}}/>
+​```
+```
+
 - [Using array index is a bad practice.](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318#.76co046o9)
 - `random()` will not work
 
-	```javascript
-	//bad
-	<MyComponent key={{Math.random()}}/>
-	```
+``` 
+​```javascript
+//bad
+<MyComponent key={{Math.random()}}/>
+​```
+```
 
 - You can create your own unique id, be sure that the method be fast and attach it to your object.
 - When the amount of child are big or involve expensive components, use keys has performance improvements.
@@ -679,65 +717,92 @@ The [key](https://facebook.github.io/react/docs/multiple-components.html#dynamic
 One of the most appreciated features of AngularJs is the two way data binding. In order to make this work AngularJs evaluates the changes between the model and the view through cycles(`$digest`). You need to understand this concept in order to understand how the framework works under the hood.
 
 Angular evaluates each watcher whenever one event is fired, this is the known `$digest` cycle.
+
 Sometimes you have to force to run a new cycle manually and you must choose the correct option because this phase is one of the most influential in terms of performance.
 
 ### `$apply`
+
 This core method lets you to start the digestion cycle explicitly, that means that all watchers are checked, the entire application starts the `$digest loop`. Internally after execute an optional function parameter, call internally to `$rootScope.$digest();`.
 
 ### `$digest`
+
 In this case the `$digest` method starts the `$digest` cycle for the current scope and its children. You should notice that the parents scopes will not be checked
+
  and not be affected.
 
 ### Recommendations
+
 - Use `$apply` or `$digest` only when browser DOM events have triggered outside of AngularJS.
 - Pass a function expression to `$apply`, this have a error handling mechanism and allow integrate changes in the digest cycle
 
-	```javascript
-	$scope.$apply(() => {
-		$scope.tip = 'Javascript Tip';
-	});
-	```
+``` 
+​```javascript
+$scope.$apply(() => {
+	$scope.tip = 'Javascript Tip';
+});
+​```
+```
 
 - If only needs update the current scope or its children use `$digest`, and prevent a new digest cycle for the whole application. The performance benefit it's self evident
 - `$apply()` is hard process for the machine and can lead to performance issues when having a lot of binding.
 - If you are using >AngularJS 1.2.X, use `$evalAsync` is a core method that will evaluate the expression during the current cycle or the next. This can improve your application's performance.
 
+## #0 - 在数组中插入一个元素(Insert item inside an Array)
 
-## #0 - Insert item inside an Array
 > 2015-12-29
 
-Inserting an item into an existing array is a daily common task. You can add elements to the end of an array using push, to the beginning using unshift, or the middle using splice.
 
-But those are known methods, doesn't mean there isn't a more performant way, here we go...
+> Inserting an item into an existing array is a daily common task. You can add elements to the end of an array using push, to the beginning using unshift, or the middle using splice.
 
-Adding an element at the end of the array is easy with push(), but there is a way more performant.
+在一个已经存在的数组中插入一个元素是我们每天都要做的事情，你可以用`push`操作把这个元素插入到数组的最后面，使用`unshift`操作把它插入到数据的最前面，或者使用`splice	`把它插入到数组的中间。
 
-```javascript
+> But those are known methods, doesn't mean there isn't a more performant way, here we go...
+
+这些都是我们熟知的方法，但是这并不意味这没有一个性能更好的方法， 现在，跟着我一起去看看...
+
+> Adding an element at the end of the array is easy with push(), but there is a way more performant.
+
+用`push`	方法能把一个元素非常方便的插入到数据的最后面，但是这个有一种性能上更好的方法去达到同样的目的。
+
+``` javascript
 var arr = [1,2,3,4,5];
 
 arr.push(6);
-arr[arr.length] = 6; // 43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1
+arr[arr.length] = 6; // 这种方法在 OS X 10.11.1 的 Chrome 47.0.2526.106 上要比直接push要快43%（43% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1）
 ```
-Both methods modify the original array. Don't believe me? Check the [jsperf](http://jsperf.com/push-item-inside-an-array)
 
-Now we are trying to add an item to the beginning of the array
+> Both methods modify the original array. Don't believe me? Check the [jsperf](http://jsperf.com/push-item-inside-an-array)
 
-```javascript
+去试试利用这两种方法修改数据。不相信我，看看这个[jsperf](http://jsperf.com/push-item-inside-an-array)
+
+> Now we are trying to add an item to the beginning of the array
+
+现在我们去尝试在数据的最前面加入一个元素
+
+``` javascript
 var arr = [1,2,3,4,5];
 
 arr.unshift(0);
-[0].concat(arr); // 98% faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1
+[0].concat(arr); // 这种方法在 OS X 10.11.1 的 Chrome 47.0.2526.106 上要比unshift快98% （faster in Chrome 47.0.2526.106 on Mac OS X 10.11.1）
 ```
-Here is a little bit detail, unshift edits the original array, concat returns a new array. [jsperf](http://jsperf.com/unshift-item-inside-an-array)
 
-Adding items at the middle of an array is easy with splice and is the most performant way to do it.
+> Here is a little bit detail, unshift edits the original array, concat returns a new array. [jsperf](http://jsperf.com/unshift-item-inside-an-array)
 
-```javascript
+这儿有一个小小的细节，`unshift`修改的是原始的数据，`concat`返回的是一个新的数组。[jsperf](http://jsperf.com/unshift-item-inside-an-array)
+
+> Adding items at the middle of an array is easy with splice and is the most performant way to do it.
+
+用`splice`去把一个元素插入到数组的中间不仅仅是最简单的方法，同样也是性能上最好的方法。
+
+``` javascript
 var items = ['one', 'two', 'three', 'four'];
 items.splice(items.length / 2, 0, 'hello');
 ```
 
-I tried to run these tests in various Browsers and OS and the results were similar. I hope these tips will be useful for you and encourage to perform your own tests!
+> I tried to run these tests in various Browsers and OS and the results were similar. I hope these tips will be useful for you and encourage to perform your own tests!
+
+我试着去在不同的浏览器和操作系统上测试上面所说的东西，结果都是一致的。我希望这个技巧对你是有用的，同时我也鼓励你去尝试他。
 
 ### License
+
 [![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png)](http://creativecommons.org/publicdomain/zero/1.0/)

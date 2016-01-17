@@ -14,7 +14,7 @@
 
 在每个午休时刻，无论是周末还是假期，这样的一条条JavaScript小技巧将会发布。
 
-# 技巧列表 
+# 技巧列表
 
 ## #15 - Even simpler way of using indexOf as a contains clause
 
@@ -482,43 +482,67 @@ printUpperCase(["cactus", "bear", "potato"]);
 //  POTATO
 ```
 
-## #05 - Differences between `undefined` and `null`
+## #05 - `undefined` 与 `null` 之间的不同之处(Differences between `undefined` and `null`)
 
 > 2016-01-05 by [@loverajoel](https://twitter.com/loverajoel)
 
-- `undefined` means a variable has not been declared, or has been declared but has not yet been assigned a value
+- > `undefined` means a variable has not been declared, or has been declared but has not yet been assigned a value
   
-- `null` is an assignment value that means "no value"
+  `undefined` 是指一个变量没有被定义，或者是已经定义了但是还没有被赋值。
   
-- Javascript sets unassigned variables with a default value of `undefined`
+- > `null` is an assignment value that means "no value"
   
-- Javascript never sets a value to `null`. It is used by programmers to indicate that a `var` has no value.
+  `null` 是指一个赋值了的变量，给他赋的值是 “没有值”。
   
-- `undefined` is not valid in JSON while `null` is
+- > Javascript sets unassigned variables with a default value of `undefined`
   
-- `undefined` typeof is `undefined`
+  JavaScript给没有赋值的变量分配的默认值是`undefined`。
   
-- `null` typeof is an `object`
+- > Javascript never sets a value to `null`. It is used by programmers to indicate that a `var` has no value.
   
-- Both are primitives
+  JavaScript 从来没有给任何一个变量赋值`null`。 他用于由程序员申明一个变量没有值。
   
-- Both are [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
+- > `undefined` is not valid in JSON while `null` is
+  
+  `undefined` 在 JSON 中是不符合规范的，但 `null` 是可以的。
+  
+- > `undefined` typeof is `undefined`
+  
+  `undefined` 的类型就是`undefined`。
+  
+- > `null` typeof is an `object`
+  
+  `null` 的类型是 `object`。
+  
+- > Both are primitives
+  
+  他们两个都是基本类型
+  
+- > Both are [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
+  
+  他们两个转化为布尔后都是false。
   
   (`Boolean(undefined) // false`, `Boolean(null) // false`)
   
-- You can know if a variable is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+- > You can know if a variable is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+  
+  假如一个变量是 `undefined` 的话你是可以知道他的。
   
   ``` javascript
   typeof variable === "undefined"
   ```
   
-- You can check if a variable is [null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+  > You can check if a variable is [null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+  
+  你是可以检测一个变量是不是 `null` 。
   
   ``` javascript
   variable === null
   ```
   
-- The **equality** operator considers them equal, but the **identity** doesn't
+- > The **equality** operator considers them equal, but the **identity** doesn't
+  
+  等于运算符 `==` 认为他们是相等的，但是身份运算符 `===` 认为他们不是相等的。
   
   ``` javascript
   null == undefined // true
@@ -529,6 +553,7 @@ printUpperCase(["cactus", "bear", "potato"]);
 ## #04 - 带重音的字符串排序(Sorting strings with accented characters)
 
 > 2016-01-04 by [@loverajoel](https://twitter.com/loverajoel)
+
 
 
 > Javascript has a native method **[sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)** that allows sorting arrays. Doing a simple `array.sort()` will treat each array entry as a string and sort it alphabetically. Also you can provide your [own custom sorting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#Parameters) function.
@@ -563,6 +588,7 @@ JavaScript 拥有一个原生的 `sort` 排序方法开排序数组。使用简�
  幸运的是，这儿有两种由 ECMAScript 国际化 API 提供的方式可以克服这种行为——`localeCompare` 和 `Intl.Collator`。
 
 > Both methods have their own custom parameters in order to configure it to work adequately.
+
 
 
 > 这两种方法都有可以自定义的参数去配置他来使得他充分工作。
@@ -606,6 +632,7 @@ JavaScript 拥有一个原生的 `sort` 排序方法开排序数组。使用简�
 ## #03 - 改善嵌套条件(Improve Nested Conditionals)
 
 > 2016-01-03 by [AlbertoFuente](https://github.com/AlbertoFuente)
+
 
 
 > How can we improve and make more efficient nested `if` statement in javascript.
@@ -745,6 +772,7 @@ render() {
 > 2016-01-01  by [@loverajoel](https://twitter.com/loverajoel)
 
 
+
 > One of the most appreciated features of AngularJs is the two way data binding. In order to make this work AngularJs evaluates the changes between the model and the view through cycles(`$digest`). You need to understand this concept in order to understand how the framework works under the hood.
 
 AngularJs 中最让人欣赏的莫过于数据的双向绑定。AngularJs 在模型和视图之间通过循环视图使得这一机制实现。如果你想去理解框架是如何去工作的话你需要了解这一概念。
@@ -798,6 +826,7 @@ $scope.$apply(() => {
 ## #0 - 在数组中插入一个元素(Insert item inside an Array)
 
 > 2015-12-29
+
 
 
 > Inserting an item into an existing array is a daily common task. You can add elements to the end of an array using push, to the beginning using unshift, or the middle using splice.

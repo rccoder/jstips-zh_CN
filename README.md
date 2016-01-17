@@ -454,13 +454,18 @@ Strict mode is supported in:
 
 [See MDN for a fuller description of strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
 
-## #06 - Writing a single method for arrays or single elements
+## #06 - 同时为一个数组或者元素写一个简单的方法(Writing a single method for arrays or single elements)
 
 > 2016-01-06 by [@mattfxyz](https://twitter.com/mattfxyz)
 
-Rather than writing separate methods to handle an array and a single element parameter, write your functions so they can handle both. This is similar to how some of jQuery's functions work (`css` will modify everything matched by the selector).
 
-You just have to concat everything into an array first. `Array.concat` will accept an array or a single element.
+> Rather than writing separate methods to handle an array and a single element parameter, write your functions so they can handle both. This is similar to how some of jQuery's functions work (`css` will modify everything matched by the selector).
+
+不像编写一个单独的函数去处理数组或者单一元素，去尝试写一个能同时处理他们的方法。这和 `jQuery` 中的函数是如何工作是类似的。（`css` 将修改所有和他选择器匹配的东西）
+
+> You just have to concat everything into an array first. `Array.concat` will accept an array or a single element.
+
+你不得不去首先合并数组中的一切东西。 `Array.concat` 将会接收一个数组或者单一元素。
 
 ``` javascript
 function printUpperCase(words) {
@@ -471,7 +476,9 @@ function printUpperCase(words) {
 }
 ```
 
-`printUpperCase` is now ready to accept a single node or an array of nodes as its parameter.
+> `printUpperCase` is now ready to accept a single node or an array of nodes as its parameter.
+
+`printUpperCase` 现在接收一个单一的元素或者数组中的元素作为他的参数。
 
 ``` javascript
 printUpperCase("cactus");

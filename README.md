@@ -331,15 +331,23 @@ Check here the [live examples](https://jsbin.com/tecoqa/edit?js,console)!
 
 Also recommends read [this discussion](https://github.com/loverajoel/jstips/issues/62) about common mistakes at checking properties' existence in objects
 
-## #09 - Template Strings
+## #09 - 模板字符串 (Template Strings)
 
 > 2016-01-09 by [@JakeRawr](https://github.com/JakeRawr)
 
-As of ES6, JS now has template strings as an alternative to the classic end quotes strings.
 
-Ex:
+> As of ES6, JS now has template strings as an alternative to the classic end quotes strings.
 
-Normal string
+在 ES6 中，JS 现在有模板字符串来替换经典的以引号作为始末的字符串。
+
+> Ex:
+
+
+> Normal string
+
+例如：
+
+普通的字符串
 
 ``` javascript
 var firstName = 'Jake';
@@ -348,7 +356,9 @@ console.log('My name is ' + firstName + ' ' + lastName);
 // My name is Jake Rawr
 ```
 
-Template String
+> Template String
+
+模板字符串
 
 ``` javascript
 var firstName = 'Jake';
@@ -357,13 +367,17 @@ console.log(`My name is ${firstName} ${lastName}`);
 // My name is Jake Rawr
 ```
 
-You can do Multi-line strings without `\n` and simple logic (ie 2+3) inside `${}` in Template String.
+> You can do Multi-line strings without `\n` and simple logic (ie 2+3) inside `${}` in Template String.
 
-You are also able to to modify the output of template strings using a function; they are called [Tagged template strings]
+你可以在不用 `\n` 的情况下使用多行字符串，除此之外还包括简单的逻辑(例如：2+3)。 在模板字符串里面用 `${}` 就可以做到。
 
-(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings#Tagged_template_strings) for example usages of tagged template strings.
+> You are also able to to modify the output of template strings using a function; they are called [Tagged template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings#Tagged_template_strings) for example usages of tagged template strings.
 
-You may also want to [read](https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2) to understand template strings more
+你也可以通过函数修改模板字符串，具体可以参见 [标签模板字符串](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings#Tagged_template_strings)。
+
+> You may also want to [read](https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2) to understand template strings more
+
+你可以能想通过阅读[他](https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2)获取更多模板字符串的内容。
 
 ## #08 - 将节点列表转化为数组 (Converting a Node List to an Array)
 

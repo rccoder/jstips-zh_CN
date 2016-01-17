@@ -365,11 +365,14 @@ You are also able to to modify the output of template strings using a function; 
 
 You may also want to [read](https://hacks.mozilla.org/2015/05/es6-in-depth-template-strings-2) to understand template strings more
 
-## #08 - Converting a Node List to an Array
+## #08 - 将节点列表转化为数组 (Converting a Node List to an Array)
 
 > 2016-01-08 by [@Tevko](https://twitter.com/tevko)
 
-The `querySelectorAll` method returns an array-like object called a node list. These data structures are referred to as "Array-like", because they appear as an array, but can not be used with array methods like `map` and `foreach`. Here's a quick, safe, and reusable way to convert a node list into an Array of DOM elements:
+
+> The `querySelectorAll` method returns an array-like object called a node list. These data structures are referred to as "Array-like", because they appear as an array, but can not be used with array methods like `map` and `foreach`. Here's a quick, safe, and reusable way to convert a node list into an Array of DOM elements:
+
+`querySelectorAll` 方法返回了一个类似数组的对象—— 节点列表(node list)。这个数据结构看起来是 ”类数组“的。因为他们是以一个数组的形式显示的，但是并不是使用数组的一些方法，比如 `map` 和 `foreach`。 这儿有一个快速，安全，可重读使用的方法去把一个节点列表转化为 DOM 元素的数组。
 
 ``` javascript
 const nodelist = document.querySelectorAll('div');
@@ -384,9 +387,13 @@ nodelistToArray.slice(...);
 //etc...
 ```
 
-The `apply` method is used to pass an array of arguments to a function with a given `this` value. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) states that `apply` will take an array like object, which is exactly what `querySelectorAll` returns. Since we don't need to specify a value for `this` in the context of the function, we pass in `null` or `0`. The result is an actual array of DOM elements which contains all of the available array methods.
+> The `apply` method is used to pass an array of arguments to a function with a given `this` value. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) states that `apply` will take an array like object, which is exactly what `querySelectorAll` returns. Since we don't need to specify a value for `this` in the context of the function, we pass in `null` or `0`. The result is an actual array of DOM elements which contains all of the available array methods.
 
-Or if you are using ES2015 you can use the [spread operator `...`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+`apply` 方法被用来将数组参数传递给一个给定 `this` 的函数。 MDN 规定，`apply` 将得到一个类似对象的数组，他正是 `querySelectorAll` 返回的东西。因为我们不需要在函数的上下文中指定 `this` 这个值，所以我们用 `null` 或者 `0` 。其结果是一个包含所有可用的数组方法的 DOM 元素的数组。
+
+> Or if you are using ES2015 you can use the [spread operator `...`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
+
+如果你使用 ES2015，你可以使用 `...` 这个操作符。
 
 ``` js
 const nodelist = [...document.querySelectorAll('div')]; // returns a real Array

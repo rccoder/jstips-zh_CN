@@ -279,11 +279,13 @@ function doTheThing() {
 
 To make things easier to read, declare all of your variables at the top of your function scope so it is clear which scope the variables are coming from. Define your variables before you need to use them. Define your functions at the bottom of your scope to keep them out of your way.
 
-## #10 - Check if a property is in a Object
+## #10 - 检查某个对象是否具有某个属性
 
 > 2016-01-10 by [@loverajoel](https://www.twitter.com/loverajoel)
 
-When you have to check if a property is present of an [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects), you probably are doing something like this:
+> When you have to check if a property is present of an [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects), you probably are doing something like this:
+
+当你要检查一个属性是否在一个[对象](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)里面的时候，你可能会这样做：
 
 ``` javascript
 var myObject = {
@@ -291,12 +293,13 @@ var myObject = {
 };
 
 if (myObject.name) { ... }
-
 ```
 
-Thats ok, but you have to know that there are two native ways for this kind of thing, the [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) and [`Object.hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty), every object descended from `Object`, has available both ways.
+> Thats ok, but you have to know that there are two native ways for this kind of thing, the [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in) and [`Object.hasOwnProperty`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty), every object descended from `Object`, has available both ways.
 
-### See the big Difference
+这样当然是没有问题的，但是你一定要知道这儿有两个原生的方法可以解决这个问题，那就是 `in` 和 `hasOwnProperty` ，任何继承与 `object` 的对象都能使用这两个方法。
+
+### 寻找较大的不同
 
 ``` javascript
 var myObject = {
@@ -308,12 +311,15 @@ myObject.hasOwnProperty('name'); // true
 
 myObject.hasOwnProperty('valueOf'); // false, valueOf is inherited from the prototype chain
 'valueOf' in myObject; // true
-
 ```
 
-Both differs in the depth how check the properties, in other words `hasOwnProperty` will only return true if key is available on that object directly, however `in` operator doesn't discriminate between properties created on an object and properties inherited from the prototype chain.
+> Both differs in the depth how check the properties, in other words `hasOwnProperty` will only return true if key is available on that object directly, however `in` operator doesn't discriminate between properties created on an object and properties inherited from the prototype chain.
 
-Here another example
+这两个方法检查属性的深度不同，换句话说 `hasOwnProperty` 只有在本身直接有这个属性的时候返回 `true` ，但是 `in` 不会去区分这个熟悉是来自于这个对象本身还是从原型链上继承下来的。
+
+> Here another example
+
+这儿有另外的一个例子
 
 ``` javascript
 var myFunc = function() {
@@ -329,7 +335,9 @@ user.hasOwnProperty('age'); // false, because age is from the prototype chain
 
 Check here the [live examples](https://jsbin.com/tecoqa/edit?js,console)!
 
-Also recommends read [this discussion](https://github.com/loverajoel/jstips/issues/62) about common mistakes at checking properties' existence in objects
+> Also recommends read [this discussion](https://github.com/loverajoel/jstips/issues/62) about common mistakes at checking properties' existence in objects
+
+同样也建议你阅读关于检查对象是否包含属性的常见错误的[讨论](https://github.com/loverajoel/jstips/issues/62)。
 
 ## #09 - 模板字符串 (Template Strings)
 
@@ -468,27 +476,27 @@ function f2() { return "I'm not strict."; }
 在 JavaScript 的文件或函数中加入这个指令，我们能直接让 JavaScript 的引擎在严格模式下禁用一系列的在大型项目中不可取的行为。除此之外，严格模式改变了以下的行为：
 
 * > Variables can only be introduced when they are preceded with "var"
-  
+
   变量引入的时间前面必须有 `var` 。
-  
+
 * > Attempting to write to readonly properties generates a noisy error
-  
+
   试图写只读属性的时候会产生错误 。
-  
+
 * > You have to call constructors with the "new" keyword
-  
+
   你必须用  `new` 关键词来调用构造函数。
-  
+
 * > "this" is not implicitly bound to the global object
-  
+
   `this` 不绑定全局对象。
-  
+
 * > Very limited use of eval() allowed
-  
+
   限制使用 `eval()` 。
-  
+
 * > Protects you from using reserved words or future reserved words as variable names
-  
+
   阻止你使用保留字或者将来会用作保留字的单词作为变量名。
 
 > Strict mode is great for new projects, but can be challenging to introduce into older projects that don't already use it in most places.  It also can be problematic if your build chain concatenates all your js files into one big file, as this may cause all files to execute in strict mode.
@@ -504,23 +512,23 @@ function f2() { return "I'm not strict."; }
 严格模式在以下的环境中被支持：
 
 * > Internet Explorer from version 10.
-  
+
   10 以后的IE
-  
+
 * > Firefox from version 4.
-  
+
   4 以后的 FireFox
-  
+
 * > Chrome from version 13.
-  
+
   13 以后的 Chrome
-  
+
 * > Safari from version 5.1.
-  
+
   5.1 以后的Safari
-  
+
 * > Opera from version 12.
-  
+
   12 以后的Opera
 
 [See MDN for a fuller description of strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode).
@@ -565,66 +573,66 @@ printUpperCase(["cactus", "bear", "potato"]);
 > 2016-01-05 by [@loverajoel](https://twitter.com/loverajoel)
 
 - > `undefined` means a variable has not been declared, or has been declared but has not yet been assigned a value
-  
+
   `undefined` 是指一个变量没有被定义，或者是已经定义了但是还没有被赋值。
-  
+
 - > `null` is an assignment value that means "no value"
-  
+
   `null` 是指一个赋值了的变量，给他赋的值是 “没有值”。
-  
+
 - > Javascript sets unassigned variables with a default value of `undefined`
-  
+
   JavaScript给没有赋值的变量分配的默认值是`undefined`。
-  
+
 - > Javascript never sets a value to `null`. It is used by programmers to indicate that a `var` has no value.
-  
+
   JavaScript 从来没有给任何一个变量赋值`null`。 他用于由程序员申明一个变量没有值。
-  
+
 - > `undefined` is not valid in JSON while `null` is
-  
+
   `undefined` 在 JSON 中是不符合规范的，但 `null` 是可以的。
-  
+
 - > `undefined` typeof is `undefined`
-  
+
   `undefined` 的类型就是`undefined`。
-  
+
 - > `null` typeof is an `object`
-  
+
   `null` 的类型是 `object`。
-  
+
 - > Both are primitives
-  
+
   他们两个都是基本类型
-  
+
 - > Both are [falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)
-  
+
   他们两个转化为布尔后都是false。
-  
+
   (`Boolean(undefined) // false`, `Boolean(null) // false`)
-  
+
 - > You can know if a variable is [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
-  
+
   假如一个变量是 `undefined` 的话你是可以知道他的。
-  
+
   ``` javascript
   typeof variable === "undefined"
   ```
-  
+
   > You can check if a variable is [null](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
-  
+
   你是可以检测一个变量是不是 `null` 。
-  
+
   ``` javascript
   variable === null
   ```
-  
+
 - > The **equality** operator considers them equal, but the **identity** doesn't
-  
+
   等于运算符 `==` 认为他们是相等的，但是身份运算符 `===` 认为他们不是相等的。
-  
+
   ``` javascript
   null == undefined // true
-  
+
   null === undefined // false
   ```
 
@@ -696,11 +704,11 @@ JavaScript 拥有一个原生的 `sort` 排序方法开排序数组。使用简�
 ```
 
 - > For each method you can customize the location
-  
+
   每种方法你都可以自定义位置
-  
+
 - > According to [Firefox](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare#Performance) Intl.Collator is faster when comparing large numbers of strings.
-  
+
   当比较两个比较大的字符串的时候`Intl.Collator`是更快的。
 
 > So when you are working with arrays of strings in a language other than English, remember to use this method to avoid unexpected sorting.
@@ -874,11 +882,11 @@ Angular 中每当一个事件被触发，就形成一个已知的`$digest`  cycl
 ### 建议(Recommendations)
 
 - > Use `$apply` or `$digest` only when browser DOM events have triggered outside of AngularJS.
-  
+
   仅仅当浏览器的 DOM 事件在 AngularJs 作用的外面时使用 `$apply` 或者 `$digest`。
-  
+
 - > Pass a function expression to `$apply`, this have a error handling mechanism and allow integrate changes in the digest cycle
-  
+
   给 `$apply` 传递一个函数表达式的时候，有一个错误处理机制，这个机制允许集成 digest cycle 的变化。
 
 ``` 
@@ -890,15 +898,15 @@ $scope.$apply(() => {
 ```
 
 - > If only needs update the current scope or its children use `$digest`, and prevent a new digest cycle for the whole application. The performance benefit it's self evident
-  
+
   仅仅去更新现在的作用域或者子作用域的时候使用 `$digest` ，阻止整个应用产生新的 digest cycle 。这在性能上的好处是不言而喻的。
-  
+
 - > `$apply()` is hard process for the machine and can lead to performance issues when having a lot of binding.
-  
+
   `$apply()` 是一个很难用的方法，当许多的绑定放在一起的时候可能会在性能上产生问题。
-  
+
 - > If you are using >AngularJS 1.2.X, use `$evalAsync` is a core method that will evaluate the expression during the current cycle or the next. This can improve your application's performance.
-  
+
   如果你使用的 AngularJS 版本是大于 1.2.X的，使用核心方法`$evalAsync`在当前的周期或者下一个的时候。这将提升你的应用性能。
 
 ## #0 - 在数组中插入一个元素(Insert item inside an Array)

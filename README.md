@@ -2,7 +2,7 @@
 
 # JavaScript 技巧介绍
 
-## 不再更新，已经有人维护中文版本，地址：https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters
+## 不再更新，已经有人维护中文版本，地址：[https://github.com/loverajoel/jstips](https://github.com/loverajoel/jstips)
 
 新的一年，新的项目. **每天一个JS小技巧**
 

@@ -2,6 +2,8 @@
 
 # JavaScript 技巧介绍
 
+## 不再更新，已经有人维护中文版本，地址：https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters
+
 新的一年，新的项目. **每天一个JS小技巧**
 
 **《Introducing JavaScript Tips》** 中文翻译版，原地址：[https://github.com/loverajoel/jstips](https://github.com/loverajoel/jstips)
@@ -216,13 +218,13 @@ More info:
 
 Demo: [jsfiddle](https://jsfiddle.net/meottb62/) - [codepen](http://codepen.io/anon/pen/JGJPoa) (outputs in browser console)
 
-## #12 - Pseudomentatory parameters in ES6 functions #ES6
+## #12 - ES6中的伪强制参数
 
 > 2016-01-12 by [Avraam Mavridis](https://github.com/AvraamMavridis)
 
+> In many programming languages the parameters of a function is by default mandatory and the developer has to explicitly define that a parameter is optional. In Javascript every parameter is optional, but we can enforce this behavior without messing the actual body of a function taking advantage of the [**es6's default values for parameters**] (http://exploringjs.com/es6/ch_parameter-handling.html#sec_parameter-default-values)  feature.
 
-
-In many programming languages the parameters of a function is by default mandatory and the developer has to explicitly define that a parameter is optional. In Javascript every parameter is optional, but we can enforce this behavior without messing the actual body of a function taking advantage of the [**es6's default values for parameters**] (http://exploringjs.com/es6/ch_parameter-handling.html#sec_parameter-default-values) feature.
+在许多编程语言中，方法的参数是强制需要的，开发人员必须明确的定义一个可选的参数。在 JavaScript 中任何参数都是可选的，但是我们可以利用[ES6的默认参数值]特点的优势去实现强制要求这种表现而不污染本身函数体。
 
 ``` javascript
 const _err = function( message ){
@@ -232,52 +234,12 @@ const _err = function( message ){
 const getSum = (a = _err('a is not defined'), b = _err('b is not defined')) => a + b
 
 getSum( 10 ) // throws Error, b is not defined
-getSum( undefined, 10 ) // throws Error, a is not defined
- ```
-
- `_err` is a function that immediately throws an Error. If no value is passed for one of the parameters, the default value is gonna be used, `_err` will be called and an Error will be throwed. You can see more examples for the **default parameters feature** on [Mozilla's Developer Network ](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters)
-
-## #11 - Hoisting
-> 2016-01-11 by [@squizzleflip](https://twitter.com/squizzleflip)
-
-Understanding [hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) will help you organize your function scope. Just remember, variable declaration and function definition are hoisted to the top. Variable definition is not, even if you declare and define a variable on the same line. Also, variable **declaration** is letting the system know that the variable exists while **definition** is assigning it a value.
-
-​```javascript
-function doTheThing() {
-  // ReferenceError: notDeclared is not defined
-  console.log(notDeclared);
-
-  // Outputs: undefined
-  console.log(definedLater);
-  var definedLater;
-
-  definedLater = 'I am defined!'
-  // Outputs: 'I am defined!'
-  console.log(definedLater)
-
-  // Outputs: undefined
-  console.log(definedSimulateneously);
-  var definedSimulateneously = 'I am defined!'
-  // Outputs: 'I am defined!'
-  console.log(definedSimulateneously)
-
-  // Outputs: 'I did it!'
-  doSomethingElse();
-
-  function doSomethingElse(){
-    console.log('I did it!');
-  }
-
-  // TypeError: undefined is not a function
-  functionVar();
-
-  var functionVar = function(){
-    console.log('I did it!');
-  }
-}
+getSum( undefined, 10 ) // throws Error, a is not defined		
 ```
 
-To make things easier to read, declare all of your variables at the top of your function scope so it is clear which scope the variables are coming from. Define your variables before you need to use them. Define your functions at the bottom of your scope to keep them out of your way.
+> `_err` is a function that immediately throws an Error. If no value is passed for one of the parameters, the default value is gonna be used, `_err` will be called and an Error will be throwed. You can see more examples for the **default parameters feature** on [Mozilla's Developer Network ](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters)
+
+`_err` 是一个即使抛出错误的方法，如果参数中的任意一个没有值，默认的参数就会被使用，`_err` 将会被调用并且抛出一个错误。你可以在这里看到更多的[例子](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/default_parameters)
 
 ## #11 - 变量提升
 

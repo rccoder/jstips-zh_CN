@@ -279,6 +279,46 @@ function doTheThing() {
 
 To make things easier to read, declare all of your variables at the top of your function scope so it is clear which scope the variables are coming from. Define your variables before you need to use them. Define your functions at the bottom of your scope to keep them out of your way.
 
+## #11 - 变量提升
+
+> 2016-01-11 by [@squizzleflip](https://twitter.com/squizzleflip)
+
+
+> Understanding [hoisting](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting) will help you organize your function scope. Just remember, variable declaration and function definition are hoisted to the top. Variable definition is not, even if you declare and define a variable on the same line. Also, variable**declaration** is letting the system know that the variable exists while **definition** is assigning it a value.
+
+理解[变量提升](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting)将会帮助你组织函数作用域问题。切记，变量声明和函数声明都会提升到顶部。即使你在同一行声明一个变量和定义一个变量，变量定义也不会提升。变量的声明是让系统知道存在这个变量，但是变量的赋值是指给这个变量赋一个值。
+
+```javascript
+function doTheThing() { // ReferenceError: notDeclared is not defined
+  console.log(notDeclared);
+
+// Outputs: undefined
+  console.log(definedLater);
+  var definedLater;
+
+  definedLater = 'I am defined!' // Outputs: 'I am defined!'
+  console.log(definedLater)
+
+// Outputs: undefined 
+  console.log(definedSimulateneously); 
+  var definedSimulateneously = 'I am defined!' // Outputs: 'I am defined!'
+  console.log(definedSimulateneously)
+
+// Outputs: 'I did it!' doSomethingElse();
+
+function doSomethingElse(){ console.log('I did it!'); }
+
+// TypeError: undefined is not a function functionVar();
+
+var functionVar = function(){ console.log('I did it!'); }
+}
+
+```
+
+> To make things easier to read, declare all of your variables at the top of your function scope so it is clear which scope the variables are coming from. Define your variables before you need to use them. Define your functions at the bottom of your scope to keep them out of your way.
+
+为了保证你的代码更加容易阅读，请将所有的变量都声明在函数的顶端，这样的话可以更加清楚的知道变量来自于哪个作用域。在你需要使用变量之前定义他们。在作用域的最后定义函数方法。
+
 ## #10 - 检查某个对象是否具有某个属性
 
 > 2016-01-10 by [@loverajoel](https://www.twitter.com/loverajoel)
